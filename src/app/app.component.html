@@ -4,8 +4,13 @@
         <a routerLink="home" class="navbar-brand px-3">
             TwoMinus
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navLinks">
-            <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler border-0" (click)="changeHamStatus()" type="button" data-bs-toggle="collapse" data-bs-target="#navLinks">
+            <!-- If the boolean hamToggle (in component class) is true, hamOpen class is attached to the below div -->
+            <div class="hamburger" [ngClass]="{'hamOpen': hamToggle}">
+                <div class="hamBar1"></div>
+                <div class="hamBar2"></div>
+                <div class="hamBar3"></div>
+            </div>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navLinks">
             <ul class="navbar-nav">
@@ -98,4 +103,24 @@
     .navbar-brand {
         font-weight: 700;
     }
+
+    /* HAMBURGER STYLING */
+    .hamBar1, .hamBar2, .hamBar3 {
+        width: 24px;
+        height: 2px;
+        background-color: black;
+        margin: 6px 0;
+        transition: 300ms;
+    }
+
+    .hamOpen .hamBar1 {
+        -webkit-transform: rotate(-45deg) translate(-6px, 6px);
+        transform: rotate(-45deg) translate(-6px, 6px);
+    }
+    .hamOpen .hamBar2 {opacity: 0;}
+    .hamOpen .hamBar3 {
+        -webkit-transform: rotate(45deg) translate(-6px, -6px);
+        transform: rotate(45deg) translate(-6px, -6px);
+    }
+
 </style>
