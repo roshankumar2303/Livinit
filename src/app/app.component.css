@@ -1,0 +1,109 @@
+/* 
+    STYLES FOR app.component.html
+
+    NOTE:
+    * Colors have been declared in src/styles.css and are system-theme-aware
+*/
+
+/* -------------------- NAVBAR STYLING -------------------- */
+
+@media(min-width: 576px) {
+
+    .navbar {
+        /* The below is so that the underline of active link appears sticked to the bottom of the navbar */
+        padding: 0;
+    }
+    
+    .nav-link {
+        /* Changing the below line would also change the height of the navbar */
+        padding: 16px 0;
+    }
+
+    .navbar-nav > li {
+        /* For Underlining Active Nav Link || Done by pseudo class ':after' */
+        position: relative;
+    }
+
+    .active::after {
+        background-color: cornflowerblue;
+        height: 4px;
+        bottom: 0;
+        content: " ";
+        left: 0;
+        position: absolute;
+        right: 0;
+    }
+
+}
+
+@media(max-width: 575px) {
+
+    .navbar {
+        /* Padding of the navbar on mobile-like viewport */
+        padding: 12px 0;
+    }
+
+    .active {
+        /* Active navlink highlighting */
+        border-left: 4px solid cornflowerblue;
+        font-weight: 500;
+        padding: 0rem 0.5rem;
+        margin: 0.5rem 0;
+    }
+
+}
+
+.navbar {
+    background-color: var(--bg-col);
+    border-bottom: 1px solid var(--border-col);
+}
+
+.nav-link {
+    color: var(--link-col);
+}
+
+.nav-link:hover {
+    color: var(--text-col);
+}
+
+.active {
+    color: var(--text-col);
+}
+
+.navbar-brand {
+    color: var(--text-col);
+    font-weight: 700;
+}
+
+/* -------------------- HAMBURGER STYLING -------------------- */
+
+/*
+    *   This is a Hamburger Icon with animation
+    *   Three divs have been used to represent three lines of the hamburger icon
+    *   If the boolean hamToggle (in "app.component.ts") is true, hamOpen class is attached to 
+        the below div, which is styled such that it fades the middle line and orients the two 
+        lines such that they represent "X" (Close)
+*/
+
+.navbar-toggler:focus {
+    /* To remove the default 'border-on-click' effect of Bootstrap on a button */
+    box-shadow: none !important;
+}
+
+.hamBar1, .hamBar2, .hamBar3 {
+    width: 24px;
+    height: 2px;
+    background-color: var(--text-col);
+    margin: 6px 0;
+    transition: 300ms;
+}
+
+.hamOpen .hamBar1 {
+    -webkit-transform: rotate(-45deg) translate(-6px, 6px);
+    transform: rotate(-45deg) translate(-6px, 6px);
+}
+.hamOpen .hamBar2 {opacity: 0;}
+.hamOpen .hamBar3 {
+    -webkit-transform: rotate(45deg) translate(-6px, -6px);
+    transform: rotate(45deg) translate(-6px, -6px);
+}

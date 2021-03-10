@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+/* COLORS AND THEMING */
+
+:root {
+    --bg-col: #fbfbfb;
+    --text-col: #262626;
+    --link-col: #4d4d4d;
+    --border-col: #dedede;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-col: #262626;
+        --text-col: #fbfbfb;
+        --link-col: #a4a4a4;
+        --border-col: #3d3d3d;
+    }
+}
+
+body {
+    background-color: var(--bg-col);
+    color: var(--text-col);
+    font-family: 'Work Sans', sans-serif;
+}
