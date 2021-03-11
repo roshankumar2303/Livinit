@@ -1,13 +1,18 @@
 /* 
-    STYLES FOR app.component.html
-
-    NOTE:
-    * Colors have been declared in src/styles.css and are system-theme-aware
+    * ---------- Styling FOR app.component.html ----------
+    |
+    | NOTES:
+    | * Colors have been declared in src/styles.css and they are system-theme-aware
+    |
+    * ----------------------------------------------------
 */
 
-/* -------------------- NAVBAR STYLING -------------------- */
+/* ======================================================== */
+/* ==================== NAVBAR STYLING ==================== */
+/* ======================================================== */
 
 @media(min-width: 576px) {
+    /* --- THIS IS WHEN VIEWPORT IS DESKTOP-LIKE --- */
 
     .navbar {
         /* The below is so that the underline of active link appears sticked to the bottom of the navbar */
@@ -20,13 +25,13 @@
     }
 
     .navbar-nav > li {
-        /* For Underlining Active Nav Link || Done by pseudo class ':after' */
+        /* For colored line under Active Nav Link, Done by the below written pseudo class ':after' */
         position: relative;
     }
 
     .active::after {
-        background-color: cornflowerblue;
-        height: 4px;
+        background-image: linear-gradient(rgba(0,0,0,0) 8%, rgba(100, 148, 237, 0.3) 84%, cornflowerblue 8%);
+        height: 12px;
         bottom: 0;
         content: " ";
         left: 0;
@@ -37,6 +42,7 @@
 }
 
 @media(max-width: 575px) {
+    /* --- THIS IS WHEN THE VIEWPORT IS MOBILE-LIKE --- */
 
     .navbar {
         /* Padding of the navbar on mobile-like viewport */
@@ -44,7 +50,7 @@
     }
 
     .active {
-        /* Active navlink highlighting */
+        /* Active navlink highlighting on mobile-like viewport */
         border-left: 4px solid cornflowerblue;
         font-weight: 500;
         padding: 0rem 0.5rem;
@@ -53,6 +59,7 @@
 
 }
 
+/* Theme appropiate Navbar Coloring */
 .navbar {
     background-color: var(--bg-col);
     border-bottom: 1px solid var(--border-col);
@@ -75,7 +82,9 @@
     font-weight: 700;
 }
 
-/* -------------------- HAMBURGER STYLING -------------------- */
+/* ================================================================ */
+/* ==================== HAMBURGER ICON STYLING ==================== */
+/* ================================================================ */
 
 /*
     *   This is a Hamburger Icon with animation
