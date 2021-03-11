@@ -4,15 +4,15 @@
 
 <!-- NAVIGATION BAR -->
 <nav class="navbar navbar-expand-sm fixed-top">
-    <div class="container-fluid">
+    <div class="container">
 
         <!-- NAVIGATION - BRAND (Home Link) -->
-        <a routerLink="home" class="navbar-brand px-3">
+        <a routerLink="home" class="navbar-brand">
             TwoMinus
         </a>
 
         <!-- NAVIGATION - COLLAPSE BUTTON -->
-        <button class="navbar-toggler border-0" (click)="changeHamStatus()" type="button" data-bs-toggle="collapse" data-bs-target="#navLinks">
+        <button class="navbar-toggler border-0 p-0" (click)="changeHamStatus()" type="button" data-bs-toggle="collapse" data-bs-target="#navLinks">
             <!-- For more info on how this animated button works, check the comments under "HAMBURGER STYLING" in "app.component.css" -->
             <div class="hamburger" [ngClass]="{'hamOpen': hamToggle}">
                 <div class="hamBar1"></div>
@@ -24,13 +24,14 @@
         <!-- NAVIGATION - LINKS -->
         <div class="collapse navbar-collapse justify-content-end" id="navLinks">
             <ul class="navbar-nav">
-                <li class="nav-item mx-3">
+                <!-- CLASS ms-3 is margin-left; s stands for 'start' -->
+                <li class="nav-item ms-3">
                     <a routerLink="store" routerLinkActive="active" class="nav-link fw-bold">Store</a>
                 </li>
-                <li class="nav-item mx-3">
+                <li class="nav-item ms-3">
                     <a routerLink="about" routerLinkActive="active" class="nav-link fw-bold">About</a>
                 </li>
-                <li class="nav-item mx-3">
+                <li class="nav-item ms-3">
                     <a routerLink="support" routerLinkActive="active" class="nav-link fw-bold">Support</a>
                 </li>
             </ul>
@@ -41,24 +42,31 @@
 
 <div class="container" style="padding-top: 6rem;">
     <router-outlet></router-outlet>
+
+    <p class="lead">The below text is part of the app component. It won't change with the router links</p>
     <h1>Test - Scroll Down - Fixed Navbar</h1>
-    <h1>Test</h1>
-    <h1>Test</h1>
-    <h1>Test</h1>
-    <h1>Test</h1>
-    <h1>Test</h1>
-    <h1>Test</h1>
-    <h1>Test</h1>
-    <h1>Test</h1>
-    <h1>Test</h1>
-    <h1>Test</h1>
-    <h1>Test</h1>
-    <h1>Test</h1>
-    <h1>Test</h1>
-    <h1>Test</h1>
-    <h1>Test</h1>
-    <h1>Test</h1>
-    <h1>Test</h1>
-    <h1>Test</h1>
-    <h1>Test</h1>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Leo duis ut diam quam nulla porttitor massa. Quam id leo in vitae turpis massa. Eu augue ut lectus arcu. Quis enim lobortis scelerisque fermentum. Euismod quis viverra nibh cras pulvinar mattis nunc sed. In iaculis nunc sed augue lacus viverra vitae congue. Purus faucibus ornare suspendisse sed nisi lacus sed viverra. Convallis tellus id interdum velit. Amet massa vitae tortor condimentum lacinia. Ornare lectus sit amet est placerat in egestas. Commodo odio aenean sed adipiscing diam donec adipiscing tristique risus. Consectetur a erat nam at. In aliquam sem fringilla ut morbi tincidunt augue interdum. Semper eget duis at tellus at urna condimentum mattis pellentesque. Dolor sit amet consectetur adipiscing elit. Etiam dignissim diam quis enim lobortis scelerisque.
+    </p>
+
+    <h1>Test - Scroll Down - Fixed Navbar</h1>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Leo duis ut diam quam nulla porttitor massa. Quam id leo in vitae turpis massa. Eu augue ut lectus arcu. Quis enim lobortis scelerisque fermentum. Euismod quis viverra nibh cras pulvinar mattis nunc sed. In iaculis nunc sed augue lacus viverra vitae congue. Purus faucibus ornare suspendisse sed nisi lacus sed viverra. Convallis tellus id interdum velit. Amet massa vitae tortor condimentum lacinia. Ornare lectus sit amet est placerat in egestas. Commodo odio aenean sed adipiscing diam donec adipiscing tristique risus. Consectetur a erat nam at. In aliquam sem fringilla ut morbi tincidunt augue interdum. Semper eget duis at tellus at urna condimentum mattis pellentesque. Dolor sit amet consectetur adipiscing elit. Etiam dignissim diam quis enim lobortis scelerisque.
+    </p>
+
+    <h1>Test - Scroll Down - Fixed Navbar</h1>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Leo duis ut diam quam nulla porttitor massa. Quam id leo in vitae turpis massa. Eu augue ut lectus arcu. Quis enim lobortis scelerisque fermentum. Euismod quis viverra nibh cras pulvinar mattis nunc sed. In iaculis nunc sed augue lacus viverra vitae congue. Purus faucibus ornare suspendisse sed nisi lacus sed viverra. Convallis tellus id interdum velit. Amet massa vitae tortor condimentum lacinia. Ornare lectus sit amet est placerat in egestas. Commodo odio aenean sed adipiscing diam donec adipiscing tristique risus. Consectetur a erat nam at. In aliquam sem fringilla ut morbi tincidunt augue interdum. Semper eget duis at tellus at urna condimentum mattis pellentesque. Dolor sit amet consectetur adipiscing elit. Etiam dignissim diam quis enim lobortis scelerisque.
+    </p>
+
+    <h1>Test - Scroll Down - Fixed Navbar</h1>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Leo duis ut diam quam nulla porttitor massa. Quam id leo in vitae turpis massa. Eu augue ut lectus arcu. Quis enim lobortis scelerisque fermentum. Euismod quis viverra nibh cras pulvinar mattis nunc sed. In iaculis nunc sed augue lacus viverra vitae congue. Purus faucibus ornare suspendisse sed nisi lacus sed viverra. Convallis tellus id interdum velit. Amet massa vitae tortor condimentum lacinia. Ornare lectus sit amet est placerat in egestas. Commodo odio aenean sed adipiscing diam donec adipiscing tristique risus. Consectetur a erat nam at. In aliquam sem fringilla ut morbi tincidunt augue interdum. Semper eget duis at tellus at urna condimentum mattis pellentesque. Dolor sit amet consectetur adipiscing elit. Etiam dignissim diam quis enim lobortis scelerisque.
+    </p>
+
+    <h1>Test - Scroll Down - Fixed Navbar</h1>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Leo duis ut diam quam nulla porttitor massa. Quam id leo in vitae turpis massa. Eu augue ut lectus arcu. Quis enim lobortis scelerisque fermentum. Euismod quis viverra nibh cras pulvinar mattis nunc sed. In iaculis nunc sed augue lacus viverra vitae congue. Purus faucibus ornare suspendisse sed nisi lacus sed viverra. Convallis tellus id interdum velit. Amet massa vitae tortor condimentum lacinia. Ornare lectus sit amet est placerat in egestas. Commodo odio aenean sed adipiscing diam donec adipiscing tristique risus. Consectetur a erat nam at. In aliquam sem fringilla ut morbi tincidunt augue interdum. Semper eget duis at tellus at urna condimentum mattis pellentesque. Dolor sit amet consectetur adipiscing elit. Etiam dignissim diam quis enim lobortis scelerisque.
+    </p>
+    
 </div>

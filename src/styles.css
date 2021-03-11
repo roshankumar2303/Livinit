@@ -9,18 +9,23 @@
 */
 
 :root {
+    /* GLOBAL */
+    --theme-col: #f48b29;
+
+    /* LIGHT THEME */
     --bg-col: #fbfbfb;
-    --text-col: #262626;
+    --text-col: #212529;
     --link-col: #4d4d4d;
     --border-col: #dedede;
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --bg-col: #262626;
+        /* DARK THEME */
+        --bg-col: #212529;
         --text-col: #fbfbfb;
         --link-col: #a4a4a4;
-        --border-col: #3d3d3d;
+        --border-col: #2d3237;
     }
 }
 

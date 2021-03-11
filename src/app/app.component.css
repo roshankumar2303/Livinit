@@ -30,7 +30,7 @@
     }
 
     .active::after {
-        background-image: linear-gradient(rgba(0,0,0,0) 8%, rgba(100, 148, 237, 0.3) 84%, cornflowerblue 8%);
+        background-image: linear-gradient(rgba(0,0,0,0) 8%, rgba(244, 139, 41, 0.25) 84%, var(--theme-col) 8%);
         height: 12px;
         bottom: 0;
         content: " ";
