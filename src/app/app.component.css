@@ -15,8 +15,8 @@
     /* --- THIS IS WHEN VIEWPORT IS DESKTOP-LIKE --- */
 
     .navbar {
-        /* The below is so that the underline of active link appears sticked to the bottom of the navbar */
         padding: 0;
+        /* The below is so that the text under the navbar (which is card-like) is'nt visible */
         background-image: linear-gradient(var(--bg-col) 95%, rgba(0,0,0,0) 5%);
     }
     
@@ -24,6 +24,7 @@
         background-color: var(--bg-col);
         border: 1px solid var(--border-col);
         border-radius: 8px;
+        filter: drop-shadow(0 0.2rem 0.8rem var(--theme-25));
     }
 
     .nav-link {
@@ -32,12 +33,13 @@
     }
 
     .navbar-nav > li {
-        /* For colored line under Active Nav Link, Done by the below written pseudo class ':after' */
+        /* For colored line under Active Nav Link, Styling done by the below written pseudo class ':after' */
         position: relative;
     }
 
     .active::after {
-        background-image: linear-gradient(rgba(0,0,0,0) 8%, rgba(244, 139, 41, 0.25) 84%, var(--theme-col) 8%);
+        /* This is for the glow-like highlighting of active route in the navbar */
+        background-image: linear-gradient(rgba(0,0,0,0) 8%, var(--theme-25) 84%, var(--theme-col) 8%);
         height: 12px;
         bottom: 0;
         content: " ";
@@ -52,15 +54,16 @@
     /* --- THIS IS WHEN THE VIEWPORT IS MOBILE-LIKE --- */
 
     .navbar {
-        /* Padding of the navbar on mobile-like viewport */
+        /* Padding, BG Color, Borders, Drop shadow of the navbar on MOBILE-LIKE viewport */
         padding: 12px 0;
         background-color: var(--bg-col);
         border-bottom: 1px solid var(--border-col);
+        filter: drop-shadow(0 0.24rem 0.8rem var(--theme-25));
     }
 
     .active {
         /* Active navlink highlighting on mobile-like viewport */
-        border-left: 4px solid cornflowerblue;
+        border-left: 4px solid var(--theme-col);
         font-weight: 500;
         padding: 0rem 0.5rem;
         margin: 0.5rem 0;

@@ -10,11 +10,14 @@
 
 :root {
     /* GLOBAL */
-    --theme-col: #f48b29;
+    --theme-25: rgba(244, 139, 41, 0.25);
+    --theme-50: rgba(244, 139, 41, 0.5);
+    --theme-75: rgba(244, 139, 41, 0.75);
+    --theme-col: rgb(244, 139, 41);
 
     /* LIGHT THEME */
     --bg-col: #fbfbfb;
-    --text-col: #212529;
+    --text-col: #1e1e1e;
     --link-col: #4d4d4d;
     --border-col: #dedede;
 }
@@ -22,10 +25,10 @@
 @media (prefers-color-scheme: dark) {
     :root {
         /* DARK THEME */
-        --bg-col: #212529;
+        --bg-col: #141414;
         --text-col: #fbfbfb;
         --link-col: #a4a4a4;
-        --border-col: #2d3237;
+        --border-col: #2e2e2e;
     }
 }
 
