@@ -17,8 +17,15 @@
     .navbar {
         /* The below is so that the underline of active link appears sticked to the bottom of the navbar */
         padding: 0;
+        background-image: linear-gradient(var(--bg-col) 95%, rgba(0,0,0,0) 5%);
     }
     
+    .navbar .container {
+        background-color: var(--bg-col);
+        border: 1px solid var(--border-col);
+        border-radius: 8px;
+    }
+
     .nav-link {
         /* Changing the below line would also change the height of the navbar */
         padding: 16px 0;
@@ -47,6 +54,8 @@
     .navbar {
         /* Padding of the navbar on mobile-like viewport */
         padding: 12px 0;
+        background-color: var(--bg-col);
+        border-bottom: 1px solid var(--border-col);
     }
 
     .active {
@@ -60,11 +69,6 @@
 }
 
 /* Theme appropiate Navbar Coloring */
-.navbar {
-    background-color: var(--bg-col);
-    border-bottom: 1px solid var(--border-col);
-}
-
 .nav-link {
     color: var(--link-col);
 }
