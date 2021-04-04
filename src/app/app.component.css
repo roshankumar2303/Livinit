@@ -15,16 +15,22 @@
     /* --- THIS IS WHEN VIEWPORT IS DESKTOP-LIKE --- */
 
     .navbar {
-        padding: 0;
-        /* The below is so that the text under the navbar (which is card-like) is'nt visible */
-        background-image: linear-gradient(var(--bg-col) 95%, rgba(0,0,0,0) 5%);
+        /* padding: 0; */
+        /* The below is so that the content that goes under the navbar isn't visible */
+        /* background-image: linear-gradient(var(--bg-col) 90%, rgba(0,0,0,0) 10%); */
+        background-color: var(--bg-col);
     }
     
     .navbar .container {
-        background-color: var(--bg-col);
+        align-items: center;
+        height: 75px;  /* This height shouldn't exceed that of router-container's top padding (See container div containing <router-outlet>) */
+        
+/* THIS IS FOR THE CARD-LIKE NAVBAR
         border: 1px solid var(--border-col);
+        background-color: var(--bg-col);
         border-radius: 8px;
-        filter: drop-shadow(0 0.2rem 0.8rem var(--theme-25));
+        filter: drop-shadow(0 0.2rem 0.8rem var(--theme-25)); 
+*/
     }
 
     .nav-link {
@@ -38,7 +44,7 @@
     }
 
     .active::after {
-        /* This is for the glow-like highlighting of active route in the navbar */
+/* This is for the glow-like highlighting of active route in the navbar
         background-image: linear-gradient(rgba(0,0,0,0) 8%, var(--theme-25) 84%, var(--theme-col) 8%);
         height: 12px;
         bottom: 0;
@@ -46,19 +52,32 @@
         left: 0;
         position: absolute;
         right: 0;
-    }
-
+*/      
+        background-color: var(--theme-col);
+        border-radius: 2px;
+        content: " ";
+        height: 4px;
+        width: 16px;
+        position: absolute;
+        bottom: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+    } 
+    
 }
 
 @media(max-width: 575px) {
     /* --- THIS IS WHEN THE VIEWPORT IS MOBILE-LIKE --- */
 
     .navbar {
-        /* Padding, BG Color, Borders, Drop shadow of the navbar on MOBILE-LIKE viewport */
-        padding: 12px 0;
+        /* BG Color, Borders of the navbar on MOBILE-LIKE viewport */
         background-color: var(--bg-col);
         border-bottom: 1px solid var(--border-col);
-        filter: drop-shadow(0 0.24rem 0.8rem var(--theme-25));
+        /* filter: drop-shadow(0 0.24rem 0.8rem var(--theme-25)); */
+    }
+
+    .navbar-brand {
+        padding: 16px 0;
     }
 
     .active {
@@ -74,6 +93,9 @@
 /* Theme appropiate Navbar Coloring */
 .nav-link {
     color: var(--link-col);
+    font-size: small;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .nav-link:hover {
@@ -86,7 +108,10 @@
 
 .navbar-brand {
     color: var(--text-col);
-    font-weight: 700;
+    font-weight: bolder;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    /* font-weight: 700; */
 }
 
 /* ================================================================ */

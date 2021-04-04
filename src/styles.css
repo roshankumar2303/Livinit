@@ -10,10 +10,10 @@
 
 :root {
     /* GLOBAL */
-    --theme-25: rgba(244, 139, 41, 0.25);
-    --theme-50: rgba(244, 139, 41, 0.5);
-    --theme-75: rgba(244, 139, 41, 0.75);
-    --theme-col: rgb(244, 139, 41);
+    --theme-25: rgba(100, 127, 211, 0.25);
+    --theme-50: rgba(100, 127, 211, 0.5);
+    --theme-75: rgba(100, 127, 211, 0.75);
+    --theme-col: rgb(100, 127, 211);
 
     /* LIGHT THEME */
     --bg-col: #fbfbfb;
@@ -36,4 +36,14 @@ body {
     background-color: var(--bg-col);
     color: var(--text-col);
     font-family: 'Work Sans', sans-serif;
+}
+
+/* ======================================================= */
+/* ==================== OTHER STYLING ==================== */
+/* ======================================================= */
+
+/* <p> elements with bootstrap "lead" class will have the Theme Colour */
+.lead {
+    color: var(--theme-col);
+    font-family: 'JetBrains Mono', monospace;
 }
