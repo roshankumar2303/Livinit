@@ -10,13 +10,13 @@
 
 :root {
     /* GLOBAL */
-    --theme-25: rgba(100, 127, 211, 0.25);
-    --theme-50: rgba(100, 127, 211, 0.5);
-    --theme-75: rgba(100, 127, 211, 0.75);
-    --theme-col: rgb(100, 127, 211);
+    --theme-25: rgba(75, 119, 141, 0.25);
+    --theme-50: rgba(75, 119, 141, 0.5);
+    --theme-75: rgba(75, 119, 141, 0.75);
+    --theme-col: rgb(75, 119, 141);
 
     /* LIGHT THEME */
-    --bg-col: #fbfbfb;
+    --bg-col: rgb(241, 246, 249);
     --text-col: #1e1e1e;
     --link-col: #4d4d4d;
     --border-col: #dedede;
@@ -25,7 +25,7 @@
 @media (prefers-color-scheme: dark) {
     :root {
         /* DARK THEME */
-        --bg-col: #141414;
+        --bg-col: rgb(24, 28, 32);
         --text-col: #fbfbfb;
         --link-col: #a4a4a4;
         --border-col: #2e2e2e;

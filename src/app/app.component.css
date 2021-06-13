@@ -11,7 +11,7 @@
 /* ==================== NAVBAR STYLING ==================== */
 /* ======================================================== */
 
-@media(min-width: 576px) {
+@media(min-width: 768px) {
     /* --- THIS IS WHEN VIEWPORT IS DESKTOP-LIKE --- */
 
     .navbar {
@@ -66,7 +66,7 @@
     
 }
 
-@media(max-width: 575px) {
+@media(max-width: 767px) {
     /* --- THIS IS WHEN THE VIEWPORT IS MOBILE-LIKE --- */
 
     .navbar {
