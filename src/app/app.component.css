@@ -108,14 +108,13 @@
 
 .navbar-brand {
     color: var(--text-col);
-    font-weight: bolder;
+    font-weight: bold;
     text-transform: uppercase;
-    letter-spacing: 4px;
-    /* font-weight: 700; */
+    letter-spacing: 6px;
 }
 
 /* ================================================================ */
-/* ==================== HAMBURGER ICON STYLING ==================== */
+/*                      HAMBURGER ICON STYLING                      */
 /* ================================================================ */
 
 /*

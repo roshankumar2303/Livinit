@@ -3,7 +3,7 @@
     |
     | NOTES:
     | * Colors have been declared here and they are system-theme-aware
-    | * Default Font: Work Sans (Google Fonts)
+    | * Default Font: Inter (Google Fonts)
     |
     * ----------------------------------------------------
 */
@@ -35,7 +35,7 @@
 body {
     background-color: var(--bg-col);
     color: var(--text-col);
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 
 /* ======================================================= */

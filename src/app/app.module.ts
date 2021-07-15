@@ -7,7 +7,6 @@ import { HomeComponent } from './home/home.component';
 import { StoreComponent } from './store/store.component';
 import { AboutComponent } from './about/about.component';
 import { SupportComponent } from './support/support.component';
-import { ProductsComponent } from './products/products.component';
 import { CommunityComponent } from './community/community.component';
 
 @NgModule({
@@ -17,7 +16,6 @@ import { CommunityComponent } from './community/community.component';
     StoreComponent,
     AboutComponent,
     SupportComponent,
-    ProductsComponent,
     CommunityComponent
   ],
   imports: [
