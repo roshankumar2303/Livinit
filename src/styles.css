@@ -42,8 +42,58 @@ body {
 /* ==================== OTHER STYLING ==================== */
 /* ======================================================= */
 
+/* ================================================================ */
+/* DIVS                                                             */
+/* ================================================================ */
+div.full-page {
+    padding: 20px 0;
+    height: 90vh;
+}
+
+/* ================================================================ */
+/* HEADINGS                                                         */
+/* ================================================================ */
+h1.global-titles {
+    font-size: 72px;
+    font-weight: 700;
+}
+
+h2.global-titles {
+    font-size: 34px;
+    font-weight: 200;
+}
+
+@media(max-width: 767px) {
+    h1.global-titles {
+        font-size: 48px;
+        font-weight: 700;
+    }
+    
+    h2.global-titles {
+        font-size: 24px;
+        font-weight: 200;
+    }
+}
+
+
+/* ================================================================ */
+/* PARAGRAPHS                                                       */
+/* ================================================================ */
 /* <p> elements with bootstrap "lead" class will have the Theme Colour */
 .lead {
     color: var(--theme-col);
     font-family: 'JetBrains Mono', monospace;
+}
+
+/* ================================================================ */
+/* IMAGES                                                           */
+/* ================================================================ */
+.img-fluid {
+    padding: 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .dark-compatible-png {
+        filter: invert();
+    }
 }
