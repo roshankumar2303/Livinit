@@ -8,6 +8,7 @@ import { StoreComponent } from './store/store.component';
 import { AboutComponent } from './about/about.component';
 import { SupportComponent } from './support/support.component';
 import { CommunityComponent } from './community/community.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CommunityComponent } from './community/community.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

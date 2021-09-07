@@ -15,44 +15,26 @@
     /* --- THIS IS WHEN VIEWPORT IS DESKTOP-LIKE --- */
 
     .navbar {
-        /* padding: 0; */
-        /* The below is so that the content that goes under the navbar isn't visible */
-        /* background-image: linear-gradient(var(--bg-col) 90%, rgba(0,0,0,0) 10%); */
         background-color: var(--bg-col);
     }
     
     .navbar .container {
         align-items: center;
-        height: 75px;  /* This height shouldn't exceed that of router-container's top padding (See container div containing <router-outlet>) */
-        
-/* THIS IS FOR THE CARD-LIKE NAVBAR
-        border: 1px solid var(--border-col);
-        background-color: var(--bg-col);
-        border-radius: 8px;
-        filter: drop-shadow(0 0.2rem 0.8rem var(--theme-25)); 
-*/
     }
 
     .nav-link {
-        /* Changing the below line would also change the height of the navbar */
+        /* Changing the below lines would also change the height of the navbar */
         padding: 16px 0;
+        margin: 0 8px;
     }
 
     .navbar-nav > li {
-        /* For colored line under Active Nav Link, Styling done by the below written pseudo class ':after' */
+        /* position-relative for achieving "colored pill" under Active Nav Link, Styling done by the below written pseudo class ':after' */
         position: relative;
     }
 
     .active::after {
-/* This is for the glow-like highlighting of active route in the navbar
-        background-image: linear-gradient(rgba(0,0,0,0) 8%, var(--theme-25) 84%, var(--theme-col) 8%);
-        height: 12px;
-        bottom: 0;
-        content: " ";
-        left: 0;
-        position: absolute;
-        right: 0;
-*/      
+        /* For the "colored pill" style to indicate Active Nav Link */   
         background-color: var(--theme-col);
         border-radius: 2px;
         content: " ";
@@ -80,14 +62,22 @@
         padding: 16px 0;
     }
 
-    .active {
-        /* Active navlink highlighting on mobile-like viewport */
-        border-left: 4px solid var(--theme-col);
-        font-weight: 500;
-        padding: 0rem 0.5rem;
-        margin: 0.5rem 0;
+    .nav-link {
+        padding: 8px;
+        margin: 8px 0;
     }
 
+    .active {
+        /* Active navlink highlighting on mobile-like viewport */
+        border: 2px solid var(--theme-col);
+        font-weight: 500;
+    }
+
+}
+
+.nav-item {
+    /* For removing default left margin of list items */
+    margin-left: 0 !important;
 }
 
 /* Theme appropiate Navbar Coloring */
@@ -96,10 +86,15 @@
     font-size: small;
     text-transform: uppercase;
     letter-spacing: 2px;
+
+    /* The below is just so that the "hover" highlight remains rounded */
+    border-radius: 16px; 
 }
 
 .nav-link:hover {
     color: var(--text-col);
+    background-color: var(--theme-25);
+    transition: 200ms ease-in;
 }
 
 .active {

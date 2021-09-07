@@ -10,13 +10,15 @@
 
 :root {
     /* GLOBAL */
-    --theme-25: rgba(75, 119, 141, 0.25);
-    --theme-50: rgba(75, 119, 141, 0.5);
-    --theme-75: rgba(75, 119, 141, 0.75);
-    --theme-col: rgb(75, 119, 141);
+    --theme-25: rgba(124, 210, 179, 0.25);
+    --theme-50: rgba(124, 210, 179, 0.5);
+    --theme-75: rgba(124, 210, 179, 0.75);
+    --theme-col: rgb(124, 210, 179);
+    
 
     /* LIGHT THEME */
-    --bg-col: rgb(241, 246, 249);
+    --theme-select: rgb(72, 133, 110);
+    --bg-col: rgb(241, 250, 247);
     --text-col: #1e1e1e;
     --link-col: #4d4d4d;
     --border-col: #dedede;
@@ -25,7 +27,8 @@
 @media (prefers-color-scheme: dark) {
     :root {
         /* DARK THEME */
-        --bg-col: rgb(24, 28, 32);
+        --theme-select: rgb(177, 228, 209);
+        --bg-col: rgb(23, 27, 26);
         --text-col: #fbfbfb;
         --link-col: #a4a4a4;
         --border-col: #2e2e2e;
@@ -96,4 +99,54 @@ h2.global-titles {
     .dark-compatible-png {
         filter: invert();
     }
+}
+
+/* ================================================================ */
+/* BUTTONS                                                          */
+/* ================================================================ */
+
+.btn-outline-primary {
+    border-color: var(--theme-col);
+    border-radius: 16px;
+
+    background-color: var(--bg-col);
+    color: var(--text-col);
+}
+
+.btn-outline-primary:hover {
+    border-color: var(--theme-select);
+    background-color: var(--theme-select);
+
+    color: var(--bg-col);
+}
+
+.btn-outline-primary:active, .btn-outline-primary:focus {
+    box-shadow: 0 0 0 0.25rem var(--theme-col) !important;
+    background-color: var(--theme-select) !important;
+
+    border-color: var(--theme-select);
+    color: var(--bg-col);
+}
+
+.btn-primary {
+    border-color: var(--theme-col);
+    border-radius: 16px;
+
+    background-color: var(--theme-50);
+    color: var(--text-col);
+}
+
+.btn-primary:hover {
+    border-color: var(--theme-select);
+    background-color: var(--theme-select);
+
+    color: var(--bg-col);
+}
+
+.btn-primary:active, .btn-primary:focus {
+    box-shadow: 0 0 0 0.25rem var(--theme-col) !important;
+    background-color: var(--theme-select) !important;
+    
+    border-color: var(--theme-select);
+    color: var(--bg-col);
 }
