@@ -1,7 +1,13 @@
-import React from "react";
+import Navbar from "./navbar";
+import Home from "./screens/home";
 
 const App = () => {
-    return <div className="p-2 m-2 bg-white rounded-lg drop-shadow-lg">App Works</div>;
+    return (
+        <div className="dark:bg-black dark:text-white min-h-screen min-w-screen">
+            <Navbar />
+            <Home />
+        </div>
+    );
 };
 
 export default App;
