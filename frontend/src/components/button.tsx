@@ -1,6 +1,6 @@
 interface ButtonProps {
     label?: string;
-    size?: string;
+    size?: "sm" | "md" | "lg" | "xl";
     colored?: boolean;
     reactIcon?: JSX.Element;
     styles?: string;
@@ -10,7 +10,7 @@ interface ButtonProps {
 
 /**
  * @param label `string`
- * @param size `One of ["sm", "md", "lg", "xl"] [optional]`
+ * @param size `"sm" | "md" | "lg" | "xl" [optional]`
  * @param colored `boolean [optional]`
  * @param reactIcon `JSX.Element [optional]` - Any icon imported from `react-icons` package
  * @param styles `string [optional]` - Additional Styles
@@ -20,7 +20,7 @@ interface ButtonProps {
 const Button = (props: ButtonProps) => {
     const defaultStyles = () => {
         const defaultStyle =
-            "transition border-[1px] rounded-lg backdrop-blur bg-white/60 dark:bg-black/60 text-black dark:text-white";
+            "transition border-[1px] rounded-lg acrylic";
         const sizeStyle: { [key: string]: string } = {
             sm: "p-2 text-xs",
             md: "p-2 text-base",

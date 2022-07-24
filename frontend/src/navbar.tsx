@@ -19,7 +19,7 @@ const Navbar = (props: NavbarProps) => {
     const [mobileNavExpanded, setMobileNavExpanded] = useState(false);
 
     return (
-        <nav className="bg-white/60 dark:bg-black/60 backdrop-blur-lg sm:flex shadow-lg sticky top-0">
+        <nav className="acrylic-shadow sm:flex sticky top-0">
             <div className="mx-auto px-4 sm:px-8 h-[64px] max-w-[1280px] grow flex items-center justify-between">
                 {/* LOGO */}
                 <div className="flex gap-6 items-center">

@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .acrylic {
+        @apply bg-white/60 dark:bg-black/60 backdrop-blur-lg;
+    }
+
+    .acrylic-shadow {
+        @apply bg-white/60 dark:bg-black/60 backdrop-blur-lg shadow-lg;
+    }
+}

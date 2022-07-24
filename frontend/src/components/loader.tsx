@@ -1,10 +1,10 @@
 interface LoaderProps {
-    size?: string;
+    size?: "xs" | "sm" | "md" | "lg" | "xl";
     colored?: boolean;
 }
 
 /**
- * @param size `One of ["xs", "sm", "md", "lg", "xl"] [Optional]`
+ * @param size `"xs" | "sm" | "md" | "lg" | "xl" [Optional]`
  * @param colored `boolean [optional]`
  */
 const Loader = (props: LoaderProps) => {

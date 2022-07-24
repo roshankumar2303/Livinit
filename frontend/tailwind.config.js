@@ -25,6 +25,7 @@ module.exports = {
         },
         'warning': '#FEB139',
         'success': '#14C38E',
+        'error': '#e02b2b'
       }
     },
   },
