@@ -3,6 +3,7 @@ interface LinkButtonProps {
     colored?: boolean;
     reactIcon?: JSX.Element;
     styles?: string;
+    disabled?: boolean;
     onClick?: (e: any) => void;
 }
 
@@ -11,6 +12,7 @@ interface LinkButtonProps {
  * @param colored `boolean [optional]`
  * @param reactIcon `JSX.Element [optional]` - Any icon imported from `react-icons` package
  * @param styles `string [optional]` - Additional Styles
+ * @param disabled `boolean [optional]`
  * @param onClick `function [optional]`
  */
 const LinkButton = (props: LinkButtonProps) => {
@@ -19,8 +21,15 @@ const LinkButton = (props: LinkButtonProps) => {
             type="button"
             className={`${props.colored && "text-primary"} ${props.styles}`}
             onClick={props.onClick}
+            disabled={props.disabled}
         >
-            <div className={`m-1 transition-all flex gap-2 items-center underline underline-offset-4 decoration-dotted hover:decoration-solid hover:decoration-primary`}>
+            <div
+                className={`transition-all flex gap-2 items-center underline underline-offset-4 decoration-dotted ${
+                    props.disabled
+                        ? "opacity-60"
+                        : "hover:decoration-solid hover:decoration-primary"
+                }`}
+            >
                 {props.reactIcon}
                 {props.label && <span>{props.label}</span>}
             </div>

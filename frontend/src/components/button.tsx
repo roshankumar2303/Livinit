@@ -4,6 +4,7 @@ interface ButtonProps {
     colored?: boolean;
     reactIcon?: JSX.Element;
     styles?: string;
+    disabled?: boolean;
     onClick?: (e: any) => void;
 }
 
@@ -13,6 +14,7 @@ interface ButtonProps {
  * @param colored `boolean [optional]`
  * @param reactIcon `JSX.Element [optional]` - Any icon imported from `react-icons` package
  * @param styles `string [optional]` - Additional Styles
+ * @param disabled `boolean [optional]`
  * @param onClick `function [optional]`
  */
 const Button = (props: ButtonProps) => {
@@ -43,10 +45,13 @@ const Button = (props: ButtonProps) => {
     return (
         <button
             type="button"
-            className={`${defaultStyles()} ${hoverStyles()} ${activeStyles()} ${
-                props.styles
+            className={`${props.styles} ${defaultStyles()} ${
+                props.disabled
+                    ? "opacity-60"
+                    : hoverStyles() + " " + activeStyles()
             }`}
             onClick={props.onClick}
+            disabled={props.disabled}
         >
             <div className="flex gap-2 items-center">
                 {props.reactIcon}
