@@ -9,6 +9,7 @@ import {
 
 import Button from "./components/button";
 import LinkButton from "./components/link-button";
+import Logo from "./components/logo";
 
 interface NavbarProps {
     isGuest: boolean;
@@ -19,10 +20,11 @@ const Navbar = (props: NavbarProps) => {
     const [mobileNavExpanded, setMobileNavExpanded] = useState(false);
 
     return (
-        <nav className="acrylic-shadow sm:flex sticky top-0">
+        <nav className="acrylic-shadow sm:flex sticky top-0 z-[888]">
             <div className="mx-auto px-4 sm:px-8 h-[64px] max-w-[1280px] grow flex items-center justify-between">
                 {/* LOGO */}
-                <div className="flex gap-6 items-center">
+                <div className="flex gap-4 items-center">
+                    <Logo />
                     <h1 className="font-bold">Livinit</h1>
                 </div>
 
@@ -78,7 +80,7 @@ const Navbar = (props: NavbarProps) => {
 
                     {/* BUTTON FOR COLLAPSIBLE NAV-LINKS */}
                     <Button
-                        styles="sm:hidden"
+                        className="sm:hidden"
                         colored
                         reactIcon={<IoMenuOutline />}
                         onClick={() => {

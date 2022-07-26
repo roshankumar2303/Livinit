@@ -10,4 +10,8 @@
     .acrylic-shadow {
         @apply bg-white/60 dark:bg-black/60 backdrop-blur-lg shadow-lg;
     }
+
+    .screen {
+        @apply min-h-[calc(100vh-64px)] w-full
+    }
 }

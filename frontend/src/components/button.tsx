@@ -1,26 +1,25 @@
 interface ButtonProps {
     label?: string;
+    className?: string;
     size?: "sm" | "md" | "lg" | "xl";
     colored?: boolean;
     reactIcon?: JSX.Element;
-    styles?: string;
     disabled?: boolean;
     onClick?: (e: any) => void;
 }
 
 /**
  * @param label `string`
+ * @param className `string [optional]`
  * @param size `"sm" | "md" | "lg" | "xl" [optional]`
  * @param colored `boolean [optional]`
  * @param reactIcon `JSX.Element [optional]` - Any icon imported from `react-icons` package
- * @param styles `string [optional]` - Additional Styles
  * @param disabled `boolean [optional]`
  * @param onClick `function [optional]`
  */
 const Button = (props: ButtonProps) => {
     const defaultStyles = () => {
-        const defaultStyle =
-            "transition border-[1px] rounded-lg acrylic";
+        const defaultStyle = "transition border-[1px] rounded-lg acrylic";
         const sizeStyle: { [key: string]: string } = {
             sm: "p-2 text-xs",
             md: "p-2 text-base",
@@ -45,7 +44,7 @@ const Button = (props: ButtonProps) => {
     return (
         <button
             type="button"
-            className={`${props.styles} ${defaultStyles()} ${
+            className={`${props.className} ${defaultStyles()} ${
                 props.disabled
                     ? "opacity-60"
                     : hoverStyles() + " " + activeStyles()
@@ -53,7 +52,7 @@ const Button = (props: ButtonProps) => {
             onClick={props.onClick}
             disabled={props.disabled}
         >
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-2 items-center justify-center">
                 {props.reactIcon}
                 {props.label && <span>{props.label}</span>}
             </div>

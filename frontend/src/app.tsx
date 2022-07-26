@@ -5,8 +5,8 @@ import Navbar from "./navbar";
 import Home from "./screens/home";
 import Store from "./screens/store";
 import Community from "./screens/community";
-import Login from "./screens/guest/login";
-import Signup from "./screens/guest/signup";
+import Login from "./screens/auth/login";
+import Signup from "./screens/auth/signup";
 import NotFound from "./screens/misc/not-found";
 
 const App = () => {
