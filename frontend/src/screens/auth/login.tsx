@@ -34,7 +34,7 @@ const Login = () => {
         if (field.length === 0) {
             setUnameState({
                 type: "warning",
-                message: "Field is empty",
+                message: "Username field is required",
             });
         } else {
             setUnameState(defaultInputState);
@@ -49,7 +49,7 @@ const Login = () => {
         if (field.length === 0) {
             setPwdState({
                 type: "warning",
-                message: "Field is empty",
+                message: "Password field is required",
             });
         } else {
             setPwdState(defaultInputState);

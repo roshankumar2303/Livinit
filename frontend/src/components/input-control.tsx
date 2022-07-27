@@ -9,7 +9,7 @@ import {
 
 interface InputControlProps {
     label: string;
-    inputType: "text" | "password" | "email" | "number";
+    inputType: "text" | "password" | "email" | "number" | "tel";
     inputId: string;
     inputName?: string;
     inputValue?: string;
@@ -26,7 +26,7 @@ interface InputControlProps {
 
 /**
  * @param label `string`
- * @param inputType `"text" | "password" | "email" | "number"`
+ * @param inputType `"text" | "password" | "email" | "number" | "tel"`
  * @param inputId `string`
  * @param inputName `string [optional]`
  * @param inputValue `string [optional]`
@@ -66,7 +66,12 @@ const InputControl = (props: InputControlProps) => {
     };
 
     return (
-        <div className="pb-4 flex flex-col" style={{ width: props.size }}>
+        <div
+            className={`pb-4 flex flex-col ${
+                props.disabled && "opacity-60 pointer-events-none"
+            }`}
+            style={{ width: props.size }}
+        >
             <label className="mb-2 text-sm" htmlFor={props.inputId}>
                 {props.label}
             </label>
