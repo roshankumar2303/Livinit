@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import {
     IoMenuOutline,
+    IoCloseOutline,
     IoLogInOutline,
     IoPersonAddOutline,
 } from "react-icons/io5";
@@ -18,9 +19,23 @@ interface NavbarProps {
 const Navbar = (props: NavbarProps) => {
     const navigate = useNavigate();
     const [mobileNavExpanded, setMobileNavExpanded] = useState(false);
+    const [atTop, setAtTop] = useState(true);
+
+    window.addEventListener("scroll", () => {
+        if (atTop === false && window.scrollY === 0) {
+            setAtTop(true);
+        }
+        if (atTop === true && window.scrollY !== 0) {
+            setAtTop(false);
+        }
+    });
 
     return (
-        <nav className="acrylic-shadow sm:flex sticky top-0 z-[888]">
+        <nav
+            className={`transition sm:flex fixed top-0 left-0 right-0 z-[888] ${
+                (!atTop || mobileNavExpanded) && "acrylic-shadow"
+            }`}
+        >
             <div className="mx-auto px-4 sm:px-8 h-[64px] max-w-[1280px] grow flex items-center justify-between">
                 {/* LOGO */}
                 <div className="flex gap-4 items-center">
@@ -82,7 +97,13 @@ const Navbar = (props: NavbarProps) => {
                     <Button
                         className="sm:hidden"
                         colored
-                        reactIcon={<IoMenuOutline />}
+                        reactIcon={
+                            mobileNavExpanded ? (
+                                <IoCloseOutline />
+                            ) : (
+                                <IoMenuOutline />
+                            )
+                        }
                         onClick={() => {
                             setMobileNavExpanded(!mobileNavExpanded);
                         }}

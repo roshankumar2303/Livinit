@@ -12,6 +12,6 @@
     }
 
     .screen {
-        @apply min-h-[calc(100vh-64px)] w-full
+        @apply pt-[64px] min-h-screen w-full;
     }
 }

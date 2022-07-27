@@ -12,7 +12,7 @@ const Login = () => {
     const [unameVerified, setUnameVerified] = useState(false);
 
     const screenBackground =
-        "bg-cover bg-[url('assets/login-gradient-light.jpg')] dark:bg-[url('assets/login-gradient-dark.jpg')]";
+        "bg-cover bg-[url('assets/gradient-1.png')]";
 
     const unameFieldOnChange = (e: any) => {
         setUnameField(e.target.value);
