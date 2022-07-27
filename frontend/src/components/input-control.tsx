@@ -16,15 +16,12 @@ interface InputControlProps {
     inputPlaceholder?: string;
     inputRequired?: boolean;
     inputOnChange?: (e: any) => void;
-    state?: "default" | "success" | "warning" | "error";
-    messages?: {
-        default?: string;
-        success?: string;
-        warning?: string;
-        error?: string;
-    };
     size?: string;
     disabled?: boolean;
+    state?: {
+        type: "default" | "success" | "warning" | "error";
+        message: string;
+    };
 }
 
 /**
@@ -36,10 +33,9 @@ interface InputControlProps {
  * @param inputPlaceholder `string [optional]`
  * @param inputRequired `boolean [optional]`
  * @param inputOnChange `function [optional]`
- * @param state `"default" | "success" | "warning" | "error" [optional]`
- * @param messages `object [optional]`
  * @param size `string [optional]`
  * @param disabled `boolean [optional]`
+ * @param state `object [optional]`
  */
 const InputControl = (props: InputControlProps) => {
     const [pwdToggle, setPwdToggle] = useState(false);
@@ -58,7 +54,6 @@ const InputControl = (props: InputControlProps) => {
         warning: "text-warning",
         error: "text-error",
     };
-
     const stateBasedIcons: { [key: string]: JSX.Element | undefined } = {
         default: undefined,
         success: <IoCheckmarkCircleOutline />,
@@ -78,7 +73,7 @@ const InputControl = (props: InputControlProps) => {
             <div className="relative">
                 <input
                     className={`${defaultStyles} ${
-                        props.state && stateBasedFieldStyles[props.state]
+                        stateBasedFieldStyles[props.state?.type || "default"]
                     }`}
                     type={pwdToggle ? "text" : props.inputType}
                     id={props.inputId}
@@ -87,20 +82,23 @@ const InputControl = (props: InputControlProps) => {
                     placeholder={props.inputPlaceholder}
                     onChange={props.inputOnChange}
                     required={props.inputRequired}
+                    disabled={props.disabled}
                 />
-                {props.state && props.state !== "default" && (
+                {props.state && props.state.type !== "default" && (
                     <div
                         className={`absolute right-[4px] top-[50%] -translate-y-[50%] p-2 text-xl rounded-lg ${
-                            stateBasedTextStyles[props.state]
+                            stateBasedTextStyles[props.state.type]
                         }`}
                     >
-                        {stateBasedIcons[props.state]}
+                        {stateBasedIcons[props.state.type]}
                     </div>
                 )}
                 {props.inputType === "password" && (
                     <div
                         className={`absolute right-[10px] top-[50%] -translate-y-[50%] p-1 text-xl cursor-pointer rounded-lg bg-black dark:bg-white text-white dark:text-black hover:bg-primary ${
-                            props.state && props.state !== "default" && "mr-8"
+                            props.state &&
+                            props.state.type !== "default" &&
+                            "mr-8"
                         }`}
                         onClick={() => {
                             setPwdToggle(!pwdToggle);
@@ -113,10 +111,10 @@ const InputControl = (props: InputControlProps) => {
             {props.state && (
                 <p
                     className={`text-xs mt-1 ${
-                        stateBasedTextStyles[props.state]
+                        stateBasedTextStyles[props.state.type]
                     }`}
                 >
-                    {props.messages && props.messages[props.state]}
+                    {props.state.message}
                 </p>
             )}
         </div>

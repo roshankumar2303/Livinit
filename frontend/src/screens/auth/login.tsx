@@ -7,35 +7,90 @@ import InputControl from "../../components/input-control";
 import Logo from "../../components/logo";
 
 const Login = () => {
-    const [unameField, setUnameField] = useState("");
-    const [pwdField, setPwdField] = useState("");
-    const [unameVerified, setUnameVerified] = useState(false);
+    interface InputFieldState {
+        type: "default" | "success" | "warning" | "error";
+        message: string;
+    }
+    const defaultInputState: InputFieldState = {
+        type: "default",
+        message: "",
+    };
+    const successInputState: InputFieldState = {
+        type: "success",
+        message: "",
+    };
 
-    const screenBackground =
-        "bg-cover bg-[url('assets/gradient-1.png')]";
+    const [unameField, setUnameField] = useState("");
+    const [unameState, setUnameState] = useState(defaultInputState);
+
+    const [pwdField, setPwdField] = useState("");
+    const [pwdState, setPwdState] = useState(defaultInputState);
+
+    const screenBackground = "bg-cover bg-[url('assets/gradient-1.png')]";
 
     const unameFieldOnChange = (e: any) => {
-        setUnameField(e.target.value);
+        const field = e.target.value.toString();
+
+        if (field.length === 0) {
+            setUnameState({
+                type: "warning",
+                message: "Field is empty",
+            });
+        } else {
+            setUnameState(defaultInputState);
+        }
+
+        setUnameField(field);
     };
 
     const pwdFieldOnChange = (e: any) => {
-        setPwdField(e.target.value);
+        const field = e.target.value.toString();
+
+        if (field.length === 0) {
+            setPwdState({
+                type: "warning",
+                message: "Field is empty",
+            });
+        } else {
+            setPwdState(defaultInputState);
+        }
+
+        setPwdField(field);
     };
 
     const verifyUser = () => {
         // Check if user exists by posting username to web server
         // Dummy function for now...
-        setUnameVerified(true);
+        if (unameField.length === 0) {
+            setUnameState({
+                type: "warning",
+                message: "Field is empty",
+            });
+            return;
+        }
+
+        setUnameState(successInputState);
     };
 
     const goBack = () => {
         // Go Back to Username field
         // Dummy function for now
-        setUnameVerified(false);
+        setUnameState(defaultInputState);
+        setPwdState(defaultInputState);
     };
 
     const login = () => {
         // Login Functionality Goes here...
+        // Dummy function for now
+        if (pwdField.length === 0) {
+            setPwdState({
+                type: "warning",
+                message: "Field is empty",
+            });
+            return;
+        }
+
+        setPwdState(successInputState);
     };
 
     return (
@@ -49,27 +104,28 @@ const Login = () => {
                     <IoLogInOutline className="text-4xl" />
                 </div>
                 <h1 className="mb-8 font-bold text-4xl">
-                    {unameVerified
+                    {unameState.type === "success"
                         ? `Welcome back, ${unameField}`
                         : "An amazing world awaits for you."}
                 </h1>
 
                 {/* Username not verified - Prompt for Username */}
-                {unameVerified === false && (
+                {unameState.type !== "success" && (
                     <InputControl
                         label="Enter Username to continue"
                         inputType="text"
                         inputId="username"
-                        inputValue={unameField}
-                        inputOnChange={unameFieldOnChange}
                         inputRequired
+                        inputOnChange={unameFieldOnChange}
+                        inputValue={unameField}
+                        state={unameState}
                     />
                 )}
-                {unameVerified === false && (
+                {unameState.type !== "success" && (
                     <Button
+                        colored
                         className="w-full"
                         label="Proceed to Login"
-                        colored
                         reactIcon={<IoArrowForward />}
                         onClick={() => {
                             verifyUser();
@@ -78,17 +134,18 @@ const Login = () => {
                 )}
 
                 {/* Username Verified - Prompt for Password */}
-                {unameVerified && (
+                {unameState.type === "success" && (
                     <InputControl
                         label="Enter Password"
                         inputType="password"
                         inputId="password"
-                        inputValue={pwdField}
-                        inputOnChange={pwdFieldOnChange}
                         inputRequired
+                        inputOnChange={pwdFieldOnChange}
+                        inputValue={pwdField}
+                        state={pwdState}
                     />
                 )}
-                {unameVerified && (
+                {unameState.type === "success" && (
                     <div className="flex gap-4">
                         <Button
                             className="w-[50%]"
