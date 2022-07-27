@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer components {
+    body {
+        @apply dark:bg-black dark:text-white;
+    }
+
     .acrylic {
         @apply bg-white/60 dark:bg-black/60 backdrop-blur-lg;
     }

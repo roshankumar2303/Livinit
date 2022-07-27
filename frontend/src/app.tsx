@@ -14,28 +14,26 @@ const App = () => {
 
     return (
         <BrowserRouter>
-            <div className="dark:bg-black dark:text-white">
-                <Navbar isGuest={!isLoggedIn} />
-                {!isLoggedIn && (
-                    <Routes>
-                        <Route path="/" element={<Navigate to={"/home"} />} />
-                        <Route path="/home" element={<Home />} />
-                        <Route path="/store" element={<Store />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/signup" element={<Signup />} />
-                        <Route path="*" element={<NotFound />} />
-                    </Routes>
-                )}
-                {isLoggedIn && (
-                    <Routes>
-                        <Route path="/" element={<Navigate to={"/home"} />} />
-                        <Route path="/home" element={<Home />} />
-                        <Route path="/store" element={<Store />} />
-                        <Route path="/community" element={<Community />} />
-                        <Route path="*" element={<NotFound />} />
-                    </Routes>
-                )}
-            </div>
+            <Navbar isGuest={!isLoggedIn} />
+            {!isLoggedIn && (
+                <Routes>
+                    <Route path="/" element={<Navigate to={"/home"} />} />
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/store" element={<Store />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/signup" element={<Signup />} />
+                    <Route path="*" element={<NotFound />} />
+                </Routes>
+            )}
+            {isLoggedIn && (
+                <Routes>
+                    <Route path="/" element={<Navigate to={"/home"} />} />
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/store" element={<Store />} />
+                    <Route path="/community" element={<Community />} />
+                    <Route path="*" element={<NotFound />} />
+                </Routes>
+            )}
         </BrowserRouter>
     );
 };

@@ -63,14 +63,14 @@ const Logo = (props: LogoProps) => {
                     transform="translate(147.456208 383.644619)"
                     strokeWidth="0"
                 >
-                    <tspan y="0" font-weight="600" stroke-width="0">
+                    <tspan y="0" fontWeight="600" strokeWidth="0">
                         L
                     </tspan>
                     <tspan
                         x="0"
                         y="360"
-                        font-weight="600"
-                        stroke-width="0"
+                        fontWeight="600"
+                        strokeWidth="0"
                     ></tspan>
                 </text>
             </svg>
