@@ -1,6 +1,10 @@
-const express = require("express");
-const app = express();
+import "./config/database"
+import server from "./config/server";
 
-// Assign Port Number
-const port = 5000;
-app.listen(port, () => console.log(`Server is up and running on port ${port}`));
+import dotenv from "dotenv";
+dotenv.config();
+
+const port = process.env.SERVER_PORT || 5000;
+server.listen(port, () => {
+    console.log(`Server is up and running on port ${port}`)
+});
