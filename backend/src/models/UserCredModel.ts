@@ -2,11 +2,11 @@ import mongoose, { Schema } from "mongoose";
 
 class UserCredModel {
     constructor() {
-        this.getSchema = this.getSchema.bind(this);
+        this.createSchema = this.createSchema.bind(this);
         this.getModel = this.getModel.bind(this);
     }
 
-    getSchema() {
+    private createSchema() {
         const schema = new Schema({
             username: {
                 type: String,
@@ -21,8 +21,8 @@ class UserCredModel {
         return schema;
     }
 
-    getModel() {
-        return mongoose.model("user-creds", this.getSchema());
+    public getModel() {
+        return mongoose.model("user-creds", this.createSchema());
     }
 }
 
