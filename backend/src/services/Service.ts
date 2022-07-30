@@ -76,9 +76,9 @@ class Service {
         );
     }
 
-    public update(query: any, updatedDocument: any) {
+    public update(query: any, updatedData: any) {
         return this.model
-            .findOneAndUpdate(query, updatedDocument)
+            .findOneAndUpdate(query, updatedData)
             .exec()
             .then(
                 (document) => {

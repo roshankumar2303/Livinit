@@ -31,7 +31,7 @@ class Controller {
     public async update(request: any, response: any) {
         const dbResponse = await this.service.update(
             request.body.query,
-            request.body.updatedDocument
+            request.body.updatedData
         );
         return response.status(dbResponse.status).send(dbResponse);
     }

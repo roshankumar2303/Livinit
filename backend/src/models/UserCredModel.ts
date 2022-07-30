@@ -26,4 +26,4 @@ class UserCredModel {
     }
 }
 
-export default UserCredModel;
+export default new UserCredModel();

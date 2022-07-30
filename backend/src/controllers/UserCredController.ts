@@ -1,15 +1,13 @@
 import Controller from "./Controller";
-
 import UserCredService from "../services/UserCredService";
-import UserCredModel from "../models/UserCredModel";
 
 class UserCredController extends Controller {
-    constructor(service: UserCredService) {
-        super(service);
+    constructor() {
+        // Assign 'UserCredService' to the 'service' property of the base class "Controller"
+        super(UserCredService);
     }
+
+    // Any other controller methods specific to the 'UserCredController' can be added below...
 }
 
-const controllerInstance = new UserCredController(
-    new UserCredService(new UserCredModel().getModel())
-);
-export default controllerInstance;
+export default new UserCredController();
