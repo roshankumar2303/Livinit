@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-class UserCredModel {
+class AuthModel {
     constructor() {
         this.createSchema = this.createSchema.bind(this);
         this.getModel = this.getModel.bind(this);
@@ -22,8 +22,8 @@ class UserCredModel {
     }
 
     public getModel() {
-        return mongoose.model("user-creds", this.createSchema());
+        return mongoose.model("auth-docs", this.createSchema());
     }
 }
 
-export default new UserCredModel();
+export default new AuthModel();

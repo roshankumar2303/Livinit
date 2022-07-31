@@ -1,3 +1,5 @@
+import { Request, Response } from "express";
+
 import Service from "../services/Service";
 
 class Controller {
@@ -6,39 +8,59 @@ class Controller {
     constructor(service: Service) {
         this.service = service;
 
+        this.get = this.get.bind(this);
         this.getAll = this.getAll.bind(this);
-        this.find = this.find.bind(this);
         this.insert = this.insert.bind(this);
         this.update = this.update.bind(this);
         this.delete = this.delete.bind(this);
     }
 
-    public async getAll(request: any, response: any) {
-        const dbResponse = await this.service.getAll();
-        return response.status(dbResponse.status).send(dbResponse);
+    public async get(request: Request, response: Response) {
+        try {
+            const dbResponse = await this.service.findOne(request.body.query);
+            return response.status(dbResponse.status).send(dbResponse);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
-    public async find(request: any, response: any) {
-        const dbResponse = await this.service.find(request.body.query);
-        return response.status(dbResponse.status).send(dbResponse);
+    public async getAll(request: Request, response: Response) {
+        try {
+            const dbResponse = await this.service.findAll();
+            return response.status(dbResponse.status).send(dbResponse);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
-    public async insert(request: any, response: any) {
-        const dbResponse = await this.service.insert(request.body.query);
-        return response.status(dbResponse.status).send(dbResponse);
+    public async insert(request: Request, response: Response) {
+        try {
+            const dbResponse = await this.service.createOne(request.body.query);
+            return response.status(dbResponse.status).send(dbResponse);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
-    public async update(request: any, response: any) {
-        const dbResponse = await this.service.update(
-            request.body.query,
-            request.body.updatedData
-        );
-        return response.status(dbResponse.status).send(dbResponse);
+    public async update(request: Request, response: Response) {
+        try {
+            const dbResponse = await this.service.updateOne(
+                request.body.query,
+                request.body.updatedData
+            );
+            return response.status(dbResponse.status).send(dbResponse);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
-    public async delete(request: any, response: any) {
-        const dbResponse = await this.service.delete(request.body.query);
-        return response.status(dbResponse.status).send(dbResponse);
+    public async delete(request: Request, response: Response) {
+        try {
+            const dbResponse = await this.service.deleteOne(request.body.query);
+            return response.status(dbResponse.status).send(dbResponse);
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 

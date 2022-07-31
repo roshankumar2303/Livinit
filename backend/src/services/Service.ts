@@ -6,118 +6,133 @@ class Service {
     constructor(model: Model<any>) {
         this.model = model;
 
-        this.getAll = this.getAll.bind(this);
-        this.find = this.find.bind(this);
-        this.insert = this.insert.bind(this);
-        this.update = this.update.bind(this);
-        this.delete = this.delete.bind(this);
+        this.findOne = this.findOne.bind(this);
+        this.findAll = this.findAll.bind(this);
+        this.createOne = this.createOne.bind(this);
+        this.updateOne = this.updateOne.bind(this);
+        this.deleteOne = this.deleteOne.bind(this);
     }
 
-    public getAll() {
-        return this.model
-            .find({})
-            .exec()
-            .then(
-                (documents) => {
-                    return {
-                        status: 200,
-                        message: "[OK] db getAll",
-                        data: documents,
-                    };
+    public async findOne(query: any) {
+        try {
+            const document = await this.model.findOne(query).exec();
+            return {
+                status: 200,
+                data: document,
+                message: {
+                    type: "OK",
+                    body: "Single Record fetched successfully",
                 },
-                (error) => {
-                    return {
-                        status: 500,
-                        message: "[ERROR] db getAll",
-                        error: error,
-                    };
-                }
-            );
-    }
-
-    public find(query: any) {
-        return this.model
-            .findOne(query)
-            .exec()
-            .then(
-                (document) => {
-                    return {
-                        status: 200,
-                        message: "[OK] db get",
-                        data: document,
-                    };
+            };
+        } catch (error) {
+            console.error(error);
+            return {
+                status: 500,
+                error: error,
+                message: {
+                    type: "ERROR",
+                    body: "Error in fetching Single Record",
                 },
-                (error) => {
-                    return {
-                        status: 500,
-                        message: "[ERROR] db get",
-                        error: error,
-                    };
-                }
-            );
+            };
+        }
     }
 
-    public insert(query: any) {
-        return this.model.create(query).then(
-            (document) => {
-                return {
-                    status: 200,
-                    message: "[OK] db insert",
-                    data: document,
-                };
-            },
-            (error) => {
-                return {
-                    status: 500,
-                    message: "[ERROR] db insert",
-                    error: error,
-                };
-            }
-        );
-    }
-
-    public update(query: any, updatedData: any) {
-        return this.model
-            .findOneAndUpdate(query, updatedData)
-            .exec()
-            .then(
-                (document) => {
-                    return {
-                        status: 200,
-                        message: "[OK] db update",
-                        data: document,
-                    };
+    public async findAll() {
+        try {
+            const documents = await this.model.find({}).exec();
+            return {
+                status: 200,
+                data: documents,
+                message: {
+                    type: "OK",
+                    body: "Multiple Records fetched successfully",
                 },
-                (error) => {
-                    return {
-                        status: 500,
-                        message: "[ERROR] db update",
-                        error: error,
-                    };
-                }
-            );
+            };
+        } catch (error) {
+            console.error(error);
+            return {
+                status: 500,
+                error: error,
+                message: {
+                    type: "ERROR",
+                    body: "Error in fetching Multiple Records",
+                },
+            };
+        }
     }
 
-    public delete(query: any) {
-        return this.model
-            .deleteOne(query)
-            .exec()
-            .then(
-                (document) => {
-                    return {
-                        status: 200,
-                        message: "[OK] db delete",
-                        data: document,
-                    };
+    public async createOne(query: any) {
+        try {
+            const document = await this.model.create(query);
+            return {
+                status: 200,
+                data: document,
+                message: {
+                    type: "OK",
+                    body: "Single Record created successfully",
                 },
-                (error) => {
-                    return {
-                        status: 500,
-                        message: "[ERROR] db delete",
-                        error: error,
-                    };
-                }
-            );
+            };
+        } catch (error) {
+            console.error(error);
+            return {
+                status: 500,
+                error: error,
+                message: {
+                    type: "ERROR",
+                    body: "Error in creating Single Record",
+                },
+            };
+        }
+    }
+
+    public async updateOne(query: any, updatedData: any) {
+        try {
+            const document = await this.model
+                .findOneAndUpdate(query, updatedData)
+                .exec();
+            return {
+                status: 200,
+                data: document,
+                message: {
+                    type: "OK",
+                    body: "Single Record updated successfully",
+                },
+            };
+        } catch (error) {
+            console.error(error);
+            return {
+                status: 500,
+                error: error,
+                message: {
+                    type: "ERROR",
+                    body: "Error in updating Single Record",
+                },
+            };
+        }
+    }
+
+    public async deleteOne(query: any) {
+        try {
+            const document = await this.model.deleteOne(query).exec();
+            return {
+                status: 200,
+                data: document,
+                message: {
+                    type: "OK",
+                    body: "Single Record deleted successfully",
+                },
+            };
+        } catch (error) {
+            console.error(error);
+            return {
+                status: 500,
+                error: error,
+                message: {
+                    type: "ERROR",
+                    body: "Error in deleting Single Record",
+                },
+            };
+        }
     }
 }
 
