@@ -5,9 +5,10 @@ import AuthController from "../controllers/AuthController";
 const router = express.Router();
 
 router.post("/get", AuthController.get);
-router.get("/get-all", AuthController.getAll);
+// router.get("/get-all", AuthController.getAll);
 router.post("/insert", AuthController.insert);
-router.post("/update", AuthController.update);
-router.delete("/delete", AuthController.delete);
+// router.post("/update", AuthController.update);
+// router.delete("/delete", AuthController.delete);
+router.post("/login", AuthController.login);
 
 export default router;

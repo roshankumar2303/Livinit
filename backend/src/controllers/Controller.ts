@@ -3,6 +3,15 @@ import { Request, Response } from "express";
 import Service from "../services/Service";
 
 class Controller {
+    static ERR_PAYLOAD = {
+        status: 500,
+        data: null,
+        message: {
+            type: "ERROR",
+            body: "Possible error(s) in accessing/utilizing Mongoose Services",
+        },
+    };
+
     protected service: Service;
 
     constructor(service: Service) {
@@ -17,49 +26,64 @@ class Controller {
 
     public async get(request: Request, response: Response) {
         try {
-            const dbResponse = await this.service.findOne(request.body.query);
-            return response.status(dbResponse.status).send(dbResponse);
+            const dbPayload = await this.service.findOne(request.body.query);
+            return response.status(dbPayload.status).send(dbPayload);
         } catch (error) {
-            console.log(error);
+            console.error(error);
+            return response
+                .status(Controller.ERR_PAYLOAD.status)
+                .send(Controller.ERR_PAYLOAD);
         }
     }
 
     public async getAll(request: Request, response: Response) {
         try {
-            const dbResponse = await this.service.findAll();
-            return response.status(dbResponse.status).send(dbResponse);
+            const dbPayload = await this.service.findAll();
+            return response.status(dbPayload.status).send(dbPayload);
         } catch (error) {
-            console.log(error);
+            console.error(error);
+            return response
+                .status(Controller.ERR_PAYLOAD.status)
+                .send(Controller.ERR_PAYLOAD);
         }
     }
 
     public async insert(request: Request, response: Response) {
         try {
-            const dbResponse = await this.service.createOne(request.body.query);
-            return response.status(dbResponse.status).send(dbResponse);
+            const dbPayload = await this.service.createOne(request.body.query);
+            return response.status(dbPayload.status).send(dbPayload);
         } catch (error) {
-            console.log(error);
+            console.error(error);
+            return response
+                .status(Controller.ERR_PAYLOAD.status)
+                .send(Controller.ERR_PAYLOAD);
         }
     }
 
     public async update(request: Request, response: Response) {
         try {
-            const dbResponse = await this.service.updateOne(
+            const dbPayload = await this.service.updateOne(
                 request.body.query,
                 request.body.updatedData
             );
-            return response.status(dbResponse.status).send(dbResponse);
+            return response.status(dbPayload.status).send(dbPayload);
         } catch (error) {
-            console.log(error);
+            console.error(error);
+            return response
+                .status(Controller.ERR_PAYLOAD.status)
+                .send(Controller.ERR_PAYLOAD);
         }
     }
 
     public async delete(request: Request, response: Response) {
         try {
-            const dbResponse = await this.service.deleteOne(request.body.query);
-            return response.status(dbResponse.status).send(dbResponse);
+            const dbPayload = await this.service.deleteOne(request.body.query);
+            return response.status(dbPayload.status).send(dbPayload);
         } catch (error) {
-            console.log(error);
+            console.error(error);
+            return response
+                .status(Controller.ERR_PAYLOAD.status)
+                .send(Controller.ERR_PAYLOAD);
         }
     }
 }

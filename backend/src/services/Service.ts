@@ -1,6 +1,15 @@
 import { Model } from "mongoose";
 
 class Service {
+    static ERR_PAYLOAD = {
+        status: 500,
+        data: null,
+        message: {
+            type: "ERROR",
+            body: "Possible error(s) in using/querying Database Models",
+        },
+    };
+
     protected model: Model<any>;
 
     constructor(model: Model<any>) {
@@ -17,23 +26,19 @@ class Service {
         try {
             const document = await this.model.findOne(query).exec();
             return {
-                status: 200,
+                status: document === null ? 404 : 200,
                 data: document,
                 message: {
-                    type: "OK",
-                    body: "Single Record fetched successfully",
+                    type: document === null ? "NOT_FOUND" : "OK",
+                    body:
+                        document === null
+                            ? "No Record found"
+                            : "Record fetched successfully",
                 },
             };
         } catch (error) {
             console.error(error);
-            return {
-                status: 500,
-                error: error,
-                message: {
-                    type: "ERROR",
-                    body: "Error in fetching Single Record",
-                },
-            };
+            return Service.ERR_PAYLOAD;
         }
     }
 
@@ -41,23 +46,19 @@ class Service {
         try {
             const documents = await this.model.find({}).exec();
             return {
-                status: 200,
+                status: documents.length === 0 ? 404 : 200,
                 data: documents,
                 message: {
-                    type: "OK",
-                    body: "Multiple Records fetched successfully",
+                    type: documents.length === 0 ? "NOT_FOUND" : "OK",
+                    body:
+                        documents.length === 0
+                            ? "No Records found"
+                            : "Records fetched successfully",
                 },
             };
         } catch (error) {
             console.error(error);
-            return {
-                status: 500,
-                error: error,
-                message: {
-                    type: "ERROR",
-                    body: "Error in fetching Multiple Records",
-                },
-            };
+            return Service.ERR_PAYLOAD;
         }
     }
 
@@ -69,19 +70,12 @@ class Service {
                 data: document,
                 message: {
                     type: "OK",
-                    body: "Single Record created successfully",
+                    body: "Record created successfully",
                 },
             };
         } catch (error) {
             console.error(error);
-            return {
-                status: 500,
-                error: error,
-                message: {
-                    type: "ERROR",
-                    body: "Error in creating Single Record",
-                },
-            };
+            return Service.ERR_PAYLOAD;
         }
     }
 
@@ -95,19 +89,12 @@ class Service {
                 data: document,
                 message: {
                     type: "OK",
-                    body: "Single Record updated successfully",
+                    body: "Record updated successfully",
                 },
             };
         } catch (error) {
             console.error(error);
-            return {
-                status: 500,
-                error: error,
-                message: {
-                    type: "ERROR",
-                    body: "Error in updating Single Record",
-                },
-            };
+            return Service.ERR_PAYLOAD;
         }
     }
 
@@ -119,19 +106,12 @@ class Service {
                 data: document,
                 message: {
                     type: "OK",
-                    body: "Single Record deleted successfully",
+                    body: "Record deleted successfully",
                 },
             };
         } catch (error) {
             console.error(error);
-            return {
-                status: 500,
-                error: error,
-                message: {
-                    type: "ERROR",
-                    body: "Error in deleting Single Record",
-                },
-            };
+            return Service.ERR_PAYLOAD;
         }
     }
 }
