@@ -4,7 +4,7 @@
     "description": "Backend for Livinit",
     "main": "app.ts",
     "scripts": {
-        "dev:start": "nodemon --exec ts-node-dev app.ts"
+        "dev:start": "nodemon --require dotenv/config --exec ts-node-dev app.ts"
     },
     "author": "Roshan Kumar Bondala",
     "license": "ISC",

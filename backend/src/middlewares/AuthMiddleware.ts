@@ -1,16 +1,8 @@
 import { Request, Response, NextFunction } from "express";
-import dotenv from "dotenv";
-
 import jwt from "jsonwebtoken";
 
-dotenv.config();
-
-class AuthMW {
-    constructor() {
-        this.authenticateToken = this.authenticateToken.bind(this);
-    }
-
-    public authenticateToken(
+class AuthMiddleware {
+    static verifyToken(
         request: Request,
         response: Response,
         next: NextFunction
@@ -51,4 +43,4 @@ class AuthMW {
     }
 }
 
-export default new AuthMW();
+export default AuthMiddleware;

@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-class AuthModel {
+class UserModel {
     constructor() {
         this.createSchema = this.createSchema.bind(this);
         this.getModel = this.getModel.bind(this);
@@ -13,17 +13,28 @@ class AuthModel {
                 required: true,
                 unique: true,
             },
-            password: {
+            firstname: {
                 type: String,
                 required: true,
+            },
+            lastname: {
+                type: String,
+                required: true,
+            },
+            email: {
+                type: String,
+                required: true,
+            },
+            phone: {
+                type: Number,
             },
         });
         return schema;
     }
 
     public getModel() {
-        return mongoose.model("auth-records", this.createSchema());
+        return mongoose.model("user-records", this.createSchema());
     }
 }
 
-export default new AuthModel();
+export default new UserModel();
