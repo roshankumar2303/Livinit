@@ -8,17 +8,17 @@ import UserMiddleware from "../middlewares/UserMiddleware";
 const router = express.Router();
 
 router.post("/get", [
-    AuthMiddleware.verifyToken,
+    AuthMiddleware.checkAuthorization,
     UserMiddleware.authorizeUserDataAccess,
     UserController.get,
 ]);
 router.post("/update", [
-    AuthMiddleware.verifyToken,
+    AuthMiddleware.checkAuthorization,
     UserMiddleware.authorizeUserDataAccess,
     UserController.update,
 ]);
 router.delete("/delete", [
-    AuthMiddleware.verifyToken,
+    AuthMiddleware.checkAuthorization,
     UserMiddleware.authorizeUserDataAccess,
     UserController.delete,
 ]);
