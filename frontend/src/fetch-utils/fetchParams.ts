@@ -19,6 +19,11 @@ export const authFetchParams: { [key: string]: FetchParams } = {
         method: "POST",
         headers: headers,
     },
+    validate: {
+        endpoint: "/auth/validate",
+        method: "GET",
+        headers: headers,
+    },
     logout: {
         endpoint: "/auth/logout",
         method: "GET",

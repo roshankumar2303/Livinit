@@ -1,23 +1,16 @@
 import { FetchParams } from "./fetchParams";
 
-const handleFetch = async (fetchParams: FetchParams, body: any) => {
+const handleFetch = async (fetchParams: FetchParams, body?: any) => {
     try {
         const response = await fetch(fetchParams.endpoint, {
             method: fetchParams.method,
             headers: fetchParams.headers,
-            body: body,
+            body: JSON.stringify(body),
         });
-        return response;
+        const data = await response.json();
+        return data;
     } catch (error) {
-        console.error(error);
-        return {
-            error: error,
-            status: 400,
-            message: {
-                type: "ERROR",
-                body: "Error in sending HTTP request",
-            },
-        };
+        console.log(error);
     }
 };
 

@@ -15,9 +15,9 @@ class AuthMiddleware {
             token !== undefined && response.clearCookie("token");
             username !== undefined && response.clearCookie("username");
 
-            return response.status(401).send({
-                status: 401,
-                data: null,
+            return response.status(200).send({
+                status: 200,
+                data: { isValidSession: false },
                 message: {
                     type: "ERROR",
                     body: "Unauthorized",
@@ -34,12 +34,12 @@ class AuthMiddleware {
                     response.clearCookie("token");
                     response.clearCookie("username");
 
-                    return response.status(403).send({
-                        status: 403,
-                        data: null,
+                    return response.status(200).send({
+                        status: 200,
+                        data: { isValidSession: false },
                         message: {
                             type: "ERROR",
-                            body: "Forbidden",
+                            body: "Unauthorized",
                         },
                     });
                 }

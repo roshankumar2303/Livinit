@@ -55,6 +55,17 @@ class AuthController extends Controller {
         }
     }
 
+    public validate(request: Request, response: Response) {
+        return response.status(200).send({
+            data: { isValidSession: true },
+            status: 200,
+            message: {
+                type: "OK",
+                body: "Validation successful",
+            },
+        });
+    }
+
     public logout(request: Request, response: Response) {
         response.clearCookie("token");
         response.clearCookie("username");
