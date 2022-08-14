@@ -40,7 +40,7 @@ const Navbar = () => {
         };
         window.addEventListener("scroll", listenNavPosition);
         return () => window.removeEventListener("scroll", listenNavPosition);
-    }, []);
+    }, [atTop]);
 
     return (
         <nav
