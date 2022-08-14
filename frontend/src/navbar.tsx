@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -8,27 +8,39 @@ import {
     IoPersonAddOutline,
 } from "react-icons/io5";
 
+import { authFetchParams } from "./fetch-utils/fetchParams";
+import handleFetch from "./fetch-utils/handleFetch";
+
 import Button from "./components/button";
 import LinkButton from "./components/link-button";
 import Logo from "./components/logo";
 
-interface NavbarProps {
-    isGuest: boolean;
-}
-
-const Navbar = (props: NavbarProps) => {
+const Navbar = () => {
     const navigate = useNavigate();
     const [mobileNavExpanded, setMobileNavExpanded] = useState(false);
     const [atTop, setAtTop] = useState(true);
+    const [isValidSession, setSessionValidity] = useState(false);
 
-    window.addEventListener("scroll", () => {
-        if (atTop === false && window.scrollY === 0) {
-            setAtTop(true);
-        }
-        if (atTop === true && window.scrollY !== 0) {
-            setAtTop(false);
-        }
-    });
+    useEffect(() => {
+        const checkSessionValidity = async () => {
+            const response = await handleFetch(authFetchParams["validate"]);
+            setSessionValidity(response.data.isValidSession);
+        };
+        checkSessionValidity();
+    }, []);
+
+    useEffect(() => {
+        const listenNavPosition = () => {
+            if (atTop === false && window.scrollY === 0) {
+                setAtTop(true);
+            }
+            if (atTop === true && window.scrollY !== 0) {
+                setAtTop(false);
+            }
+        };
+        window.addEventListener("scroll", listenNavPosition);
+        return () => window.removeEventListener("scroll", listenNavPosition);
+    }, []);
 
     return (
         <nav
@@ -48,35 +60,35 @@ const Navbar = (props: NavbarProps) => {
                     <LinkButton
                         label="Home"
                         onClick={() => {
-                            navigate("home");
+                            navigate("/home");
                         }}
                     />
                     <LinkButton
                         label="Store"
                         onClick={() => {
-                            navigate("store");
+                            navigate("/store");
                         }}
                     />
                     <LinkButton
                         label="Community"
                         onClick={() => {
-                            navigate("community");
+                            navigate("/community");
                         }}
-                        disabled={props.isGuest}
+                        disabled={!isValidSession}
                     />
                 </div>
 
                 {/* USER CONTROLS */}
                 <div className="flex gap-6 items-center">
                     {/* NOT LOGGED IN */}
-                    {props.isGuest && (
+                    {!isValidSession && (
                         <div className="flex gap-2">
                             <Button
                                 label="Login"
                                 size="sm"
                                 reactIcon={<IoLogInOutline />}
                                 onClick={() => {
-                                    navigate("login");
+                                    navigate("/auth/login");
                                 }}
                             />
                             <Button
@@ -84,14 +96,14 @@ const Navbar = (props: NavbarProps) => {
                                 size="sm"
                                 reactIcon={<IoPersonAddOutline />}
                                 onClick={() => {
-                                    navigate("signup");
+                                    navigate("/auth/signup");
                                 }}
                             />
                         </div>
                     )}
 
                     {/* LOGGED IN */}
-                    {!props.isGuest && <div className="hidden gap-6"></div>}
+                    {isValidSession && <div className="hidden gap-6"></div>}
 
                     {/* BUTTON FOR COLLAPSIBLE NAV-LINKS */}
                     <Button
@@ -119,21 +131,21 @@ const Navbar = (props: NavbarProps) => {
                     <LinkButton
                         label="Home"
                         onClick={() => {
-                            navigate("home");
+                            navigate("/home");
                         }}
                     />
                     <LinkButton
                         label="Store"
                         onClick={() => {
-                            navigate("store");
+                            navigate("/store");
                         }}
                     />
                     <LinkButton
                         label="Community"
                         onClick={() => {
-                            navigate("community");
+                            navigate("/community");
                         }}
-                        disabled={props.isGuest}
+                        disabled={!isValidSession}
                     />
                 </div>
             </div>
