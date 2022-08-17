@@ -108,7 +108,6 @@ const Signup = () => {
     const signup = async () => {
         if (validateFieldsOnSubmit() === false) return;
         if (passwordCheckOnSubmit() === false) return;
-
         const payload = {
             query: {
                 ...formFields,

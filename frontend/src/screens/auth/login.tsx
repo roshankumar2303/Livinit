@@ -65,8 +65,6 @@ const Login = () => {
     };
 
     const verifyUser = async () => {
-        // Check if user exists by posting username to web server
-        // Dummy function for now...
         if (unameField.length === 0) {
             setUnameState({
                 type: "warning",
@@ -84,7 +82,7 @@ const Login = () => {
             if (response.message.type === "NOT_FOUND") {
                 setUnameState({
                     type: "error",
-                    message: `Couldn't find user "${unameField}". Please check your username again`,
+                    message: `Couldn't find user "${unameField}". Please enter a valid username`,
                 });
                 return;
             }
