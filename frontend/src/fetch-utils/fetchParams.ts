@@ -2,13 +2,13 @@ const headers: Headers = new Headers({
     "Content-Type": "application/json",
 });
 
-export interface FetchParams {
+export interface FetchParamsInterface {
     endpoint: string;
     method: string;
     headers: Headers;
 }
 
-export const authFetchParams: { [key: string]: FetchParams } = {
+export const authFetchParams: { [key: string]: FetchParamsInterface } = {
     get: {
         endpoint: "/auth/get",
         method: "POST",
@@ -36,7 +36,7 @@ export const authFetchParams: { [key: string]: FetchParams } = {
     },
 };
 
-export const userFetchParams: { [key: string]: FetchParams } = {
+export const userFetchParams: { [key: string]: FetchParamsInterface } = {
     get: {
         endpoint: "/user/get",
         method: "POST",

@@ -18,8 +18,8 @@ const App = () => {
             <Routes>
                 <Route path="/">
                     <Route path="" element={<Navigate to={"home"} />} />
-                    <Route path="/home" element={<Home />} />
-                    <Route path="/store" element={<Store />} />
+                    <Route path="home" element={<Home />} />
+                    <Route path="store" element={<Store />} />
                 </Route>
                 <Route path="/" element={<PrivateOutlet />}>
                     <Route path="community" element={<Community />} />

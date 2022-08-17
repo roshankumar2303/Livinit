@@ -1,6 +1,6 @@
-import { FetchParams } from "./fetchParams";
+import { FetchParamsInterface } from "./fetchParams";
 
-const handleFetch = async (fetchParams: FetchParams, body?: any) => {
+const handleFetch = async (fetchParams: FetchParamsInterface, body?: any) => {
     try {
         const response = await fetch(fetchParams.endpoint, {
             method: fetchParams.method,

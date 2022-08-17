@@ -85,14 +85,15 @@ class AuthController extends Controller {
         response: Response,
         next: NextFunction
     ) {
-        // This controller function creates record of new user authentication credentials,
-        // after which, the control is passed to 'signup' of UserController, which
+        // This controller function creates record of new user auth credentials (username
+        // and password), after which, the control is passed to 'signup' of UserController, which
         // in turn creates record of the details of the new user
         try {
             const dbPayload = await this.service.createOne({
                 username: request.body.query.username,
                 password: request.body.query.password,
             });
+            if (dbPayload.status === 500) throw dbPayload;
             next();
         } catch (error) {
             console.error(error);

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { IoLogInOutline, IoArrowForward, IoArrowBack } from "react-icons/io5";
 
@@ -6,7 +7,12 @@ import Button from "../../components/button";
 import InputControl from "../../components/input-control";
 import Logo from "../../components/logo";
 
+import { authFetchParams } from "../../fetch-utils/fetchParams";
+import handleFetch from "../../fetch-utils/handleFetch";
+
 const Login = () => {
+    const navigate = useNavigate();
+
     interface InputFieldState {
         type: "default" | "success" | "warning" | "error";
         message: string;
@@ -58,7 +64,7 @@ const Login = () => {
         setPwdField(field);
     };
 
-    const verifyUser = () => {
+    const verifyUser = async () => {
         // Check if user exists by posting username to web server
         // Dummy function for now...
         if (unameField.length === 0) {
@@ -68,20 +74,32 @@ const Login = () => {
             });
             return;
         }
-
-        setUnameState(successInputState);
+        try {
+            const payload = {
+                query: {
+                    username: unameField,
+                },
+            };
+            const response = await handleFetch(authFetchParams["get"], payload);
+            if (response.message.type === "NOT_FOUND") {
+                setUnameState({
+                    type: "error",
+                    message: `Couldn't find user "${unameField}". Please check your username again`,
+                });
+                return;
+            }
+            setUnameState(successInputState);
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     const goBack = () => {
-        // Go Back to Username field
-        // Dummy function for now
         setUnameState(defaultInputState);
         setPwdState(defaultInputState);
     };
 
-    const login = () => {
-        // Login Functionality Goes here...
-        // Dummy function for now
+    const login = async () => {
         if (pwdField.length === 0) {
             setPwdState({
                 type: "warning",
@@ -89,8 +107,30 @@ const Login = () => {
             });
             return;
         }
-
-        setPwdState(successInputState);
+        try {
+            const payload = {
+                query: {
+                    username: unameField,
+                    password: pwdField,
+                },
+            };
+            const response = await handleFetch(
+                authFetchParams["login"],
+                payload
+            );
+            if (response.message.type === "NOT_FOUND") {
+                setPwdState({
+                    type: "error",
+                    message: `Incorrect Password`,
+                });
+                return;
+            }
+            setPwdState(successInputState);
+            window.location.reload();
+            navigate("", { replace: true });
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (

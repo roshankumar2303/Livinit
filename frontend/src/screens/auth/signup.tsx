@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { IoPersonAddOutline } from "react-icons/io5";
 
@@ -6,112 +7,125 @@ import Button from "../../components/button";
 import InputControl from "../../components/input-control";
 import Logo from "../../components/logo";
 
+import { authFetchParams } from "../../fetch-utils/fetchParams";
+import handleFetch from "../../fetch-utils/handleFetch";
+
 const Signup = () => {
-    interface InputFieldState {
+    const screenBackground = "bg-cover bg-[url('assets/gradient-1.png')]";
+
+    const navigate = useNavigate();
+
+    const defaultInputState: {
         type: "default" | "success" | "warning" | "error";
         message: string;
-    }
-    const defaultInputState: InputFieldState = {
+    } = {
         type: "default",
         message: "",
     };
 
-    const [unameField, setUnameField] = useState("");
-    const [unameState, setUnameState] = useState(defaultInputState);
+    const [formFields, setFormFields] = useState({
+        username: "",
+        password: "",
+        firstname: "",
+        lastname: "",
+        email: "",
+        phone: "",
+    });
+    const [formStates, setFormStates] = useState({
+        username: defaultInputState,
+        password: defaultInputState,
+        firstname: defaultInputState,
+        lastname: defaultInputState,
+        email: defaultInputState,
+        phone: defaultInputState,
+    });
+    const [passwordState, setPasswordState] = useState(defaultInputState);
 
-    const [emailField, setEmailField] = useState("");
-    const [emailState, setEmailState] = useState(defaultInputState);
-
-    const [phoneField, setPhoneField] = useState("");
-    const [phoneState, setPhoneState] = useState(defaultInputState);
-
-    const [pwdField, setPwdField] = useState("");
-    const [pwdCheckField, setPwdCheckField] = useState("");
-    const [pwdState, setPwdState] = useState(defaultInputState);
-
-    const screenBackground = "bg-cover bg-[url('assets/gradient-1.png')]";
-
-    const unameFieldOnChange = (e: any) => {
-        const field = e.target.value.toString();
-
-        if (field.length === 0) {
-            setUnameState({
-                type: "warning",
-                message: "Username field is required",
+    const validateField = (fieldKey: string, fieldVal: string) => {
+        if (fieldVal.length === 0) {
+            setFormStates({
+                ...formStates,
+                [fieldKey]: {
+                    type: "warning",
+                    message: "Field is required",
+                },
             });
         } else {
-            setUnameState(defaultInputState);
+            setFormStates({
+                ...formStates,
+                [fieldKey]: defaultInputState,
+            });
         }
-
-        setUnameField(field);
     };
 
-    const emailFieldOnChange = (e: any) => {
-        const field = e.target.value.toString();
-
-        if (field.length === 0) {
-            setEmailState({
-                type: "warning",
-                message: "Email field is required",
-            });
-        } else {
-            setEmailState(defaultInputState);
-        }
-
-        setEmailField(field);
-    };
-
-    const phoneFieldOnChange = (e: any) => {
-        const field = e.target.value.toString();
-
-        if (field.length === 0) {
-            setPhoneState({
-                type: "warning",
-                message: "Phone field is required",
-            });
-        } else {
-            setPhoneState(defaultInputState);
-        }
-
-        setPhoneField(field);
-    };
-
-    const pwdOnChange = (e: any) => {
-        const field = e.target.value.toString();
-        const fieldId = e.target.id.toString();
-
-        if (field.length === 0) {
-            setPwdState({
-                type: "warning",
-                message: "One (or) both the password fields are empty",
-            });
-            fieldId === "pwd" ? setPwdField("") : setPwdCheckField("");
-        } else {
-            if (fieldId === "pwd") {
-                setPwdState(defaultInputState);
-                setPwdCheckField("");
-                setPwdField(field);
-            }
-            if (fieldId === "pwd-check") {
-                if (field === pwdField) {
-                    setPwdState({
-                        type: "success",
-                        message: "Passwords match",
-                    });
-                } else {
-                    setPwdState({
-                        type: "error",
-                        message: "Passwords do not match",
-                    });
-                }
-                setPwdCheckField(field);
+    const validateFieldsOnSubmit = () => {
+        let flag = true;
+        let newFormStates = { ...formStates };
+        for (const [fieldKey, fieldVal] of Object.entries(formFields)) {
+            if (fieldVal.length === 0) {
+                flag = false;
+                newFormStates = {
+                    ...newFormStates,
+                    [fieldKey]: {
+                        type: "warning",
+                        message: "Field is required",
+                    },
+                };
             }
         }
+        setFormStates(newFormStates);
+        return flag;
     };
 
-    const signup = () => {
-        // Signup Functionality Goes here...
-        // Dummy function for now
+    const formFieldsOnChange = (e: any) => {
+        const fieldKey = e.target.id.toString();
+        const fieldVal = e.target.value.toString();
+        validateField(fieldKey, fieldVal);
+        setFormFields({
+            ...formFields,
+            [fieldKey]: fieldVal,
+        });
+    };
+
+    const passwordCheckOnChange = (e: any) => {
+        if (e.target.value.toString() !== formFields.password) {
+            setPasswordState({
+                type: "error",
+                message: "Passwords do not match",
+            });
+        } else {
+            setPasswordState({
+                type: "success",
+                message: "Passwords match",
+            });
+        }
+    };
+
+    const passwordCheckOnSubmit = () => {
+        return passwordState.type === "success";
+    };
+
+    const signup = async () => {
+        if (validateFieldsOnSubmit() === false) return;
+        if (passwordCheckOnSubmit() === false) return;
+
+        const payload = {
+            query: {
+                ...formFields,
+            },
+        };
+        try {
+            const response = await handleFetch(
+                authFetchParams["signup"],
+                payload
+            );
+            if (response.status !== 500) {
+                window.location.reload();
+                navigate("", { replace: true });
+            }
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
@@ -138,9 +152,9 @@ const Signup = () => {
                         inputType="text"
                         inputId="username"
                         inputRequired
-                        inputOnChange={unameFieldOnChange}
-                        inputValue={unameField}
-                        state={unameState}
+                        inputOnChange={formFieldsOnChange}
+                        inputValue={formFields.username}
+                        state={formStates.username}
                     />
                     <InputControl
                         label="Your Email"
@@ -148,9 +162,9 @@ const Signup = () => {
                         inputType="email"
                         inputId="email"
                         inputRequired
-                        inputOnChange={emailFieldOnChange}
-                        inputValue={emailField}
-                        state={emailState}
+                        inputOnChange={formFieldsOnChange}
+                        inputValue={formFields.email}
+                        state={formStates.email}
                     />
                     <InputControl
                         label="Your Phone"
@@ -158,9 +172,9 @@ const Signup = () => {
                         inputType="tel"
                         inputId="phone"
                         inputRequired
-                        inputOnChange={phoneFieldOnChange}
-                        inputValue={phoneField}
-                        state={phoneState}
+                        inputOnChange={formFieldsOnChange}
+                        inputValue={formFields.phone}
+                        state={formStates.phone}
                     />
                 </div>
 
@@ -169,21 +183,21 @@ const Signup = () => {
                         label="Your First Name"
                         size="100%"
                         inputType="text"
-                        inputId="first-name"
+                        inputId="firstname"
                         inputRequired
-                        // inputOnChange={}
-                        // inputValue={}
-                        // state={}
+                        inputOnChange={formFieldsOnChange}
+                        inputValue={formFields.firstname}
+                        state={formStates.firstname}
                     />
                     <InputControl
                         label="Your Last Name"
                         size="100%"
                         inputType="text"
-                        inputId="last-name"
+                        inputId="lastname"
                         inputRequired
-                        // inputOnChange={}
-                        // inputValue={}
-                        // state={}
+                        inputOnChange={formFieldsOnChange}
+                        inputValue={formFields.lastname}
+                        state={formStates.lastname}
                     />
                 </div>
 
@@ -192,21 +206,21 @@ const Signup = () => {
                         label="Enter a password"
                         size="100%"
                         inputType="password"
-                        inputId="pwd"
+                        inputId="password"
                         inputRequired
-                        inputOnChange={pwdOnChange}
-                        inputValue={pwdField}
-                        state={pwdState}
+                        inputOnChange={formFieldsOnChange}
+                        inputValue={formFields.password}
+                        state={formStates.password}
                     />
                     <InputControl
                         label="Confirm Password"
                         size="100%"
                         inputType="password"
-                        inputId="pwd-check"
+                        inputId="password-check"
                         inputRequired
-                        inputOnChange={pwdOnChange}
-                        inputValue={pwdCheckField}
-                        state={pwdState}
+                        inputOnChange={passwordCheckOnChange}
+                        state={passwordState}
+                        disabled={formFields.password.length === 0}
                     />
                 </div>
 
